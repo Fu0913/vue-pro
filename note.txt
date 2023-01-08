@@ -1,0 +1,208 @@
+node&npm
+  https://nodejs.org/en/
+  node 16+以上 升级node方法，下载安装包，覆盖安装
+vscode
+  https://code.visualstudio.com/
+  安装插件 win11 win10 右击以管理员身份去打开vscode
+    Chinese (Simplified) (简体中文) Language Pack for Visual Studio Code
+    Auto Rename Tag
+    Code Spell Checker 拼写检查
+    Image preview
+    indent-rainbow
+    koroFileHeader
+    Turbo Console Log
+    Vetur
+    Vue Language Features
+  新建文件
+  集成终端
+    PS powershell 如果PS有问题 运行命令报错、运行脚本报错 那么切换为cmd
+    cmd 如果cmd也不能用 那么切换为系统终端
+    系统终端
+git gitee
+    https://git-scm.com/download/win
+  注册gitee账号
+    要绑定自己的邮箱 chen_2019@qq.com
+  创建仓库
+    https://gitee.com/AdminRDC/shanxinongda20.git
+  初始化提交
+    0. 在终端中告诉git你是谁
+      git config --global user.name "任殿臣"
+      git config --global user.email "chen_2019@qq.com"
+      新命令 ：查看git配置 git config --list
+    1. 将本地文件夹初始化为git仓库(在终端中打开)
+      git init 
+      初始化完成后 这个文件夹中会出现一个隐藏文件夹 .git/
+    2. 准备要提交到远程git仓库的文件
+      git add note.txt
+    3. 添加一条推送消息
+      git commit -m "第一次提交笔记文件"
+    4. 把远程git仓库的地址告诉本地git仓库
+      git remote add origin https://gitee.com/AdminRDC/shanxinongda20.git
+      新命令：git remote -v  查看当前仓库的远程地址
+    5. 将本地准备的文件（2.）和消息（3.）推送到远程仓库（4.）
+      git push -u origin "master"
+    6. 提示输入git账号密码
+      英文账号 AdminRDC
+      密码    ********
+      windows修改gitee用户名、密码的位置  凭据管理器 - 普通凭据
+  再次提交 在git仓库中执行
+    0. 新命令： git status
+      查看当前git仓库的状态
+      git add 的文件一定是发生过变化（修改、新建、删除）的文件
+      然后再commit
+    1. 添加要提交的文件
+      git add note.txt
+    2. 添加一条推送消息
+      git commit -m "第二次提交笔记"
+    3. 推送到远程仓库 
+      git push
+  解释
+    git add note.txt 只添加note.txt一个文件
+    git add *        添加所有发生变动的文件
+    git add .*       添加所有发生变动的文件 是以.开头的配置文件
+    git add *        添加所有发生变动的文件
+  克隆仓库
+    如何拿到我提交的代码
+    已知对方git仓库的地址：https://gitee.com/AdminRDC/shanxinongda20
+    同时对方git仓库要是开源的 或者你有仓库的权限
+    克隆仓库  
+      git clone https://gitee.com/AdminRDC/shanxinongda20
+    获取仓库中的最新提交 先进入到刚刚克隆下来的文件夹中 然后执行 
+      git pull
+chrome|firefox
+vue
+  1. 安装vue并创建项目
+    npm init vue@latest
+    （一路回车，默认配置）
+    Need to install the following packages:
+      create-vue@3.5.0
+    Ok to proceed? (y) 
+
+    Vue.js - The Progressive JavaScript Framework
+
+    ✔ Project name: … vue-project
+    ✔ Add TypeScript? … No / Yes
+    ✔ Add JSX Support? … No / Yes
+    ✔ Add Vue Router for Single Page Application development? … No / Yes
+    ✔ Add Pinia for state management? … No / Yes
+    ✔ Add Vitest for Unit Testing? … No / Yes
+    ✔ Add an End-to-End Testing Solution? › No
+    ✔ Add ESLint for code quality? … No / Yes
+  2. 进入到项目目录
+    cd vue-project
+  3. 安装项目依赖
+    npm install 或者 npm i
+  4. 运行项目
+    npm run dev
+整理项目框架
+  .vscode\          vscode配置文件
+  node_modules      npm安装的依赖
+  public            公共资源文件夹
+    favicon.ico     网站logo
+  src               主要代码目录
+    assets          静态资源文件
+    components      自定义组件文件夹
+    App.vue         项目主页
+    main.js         主要的js文件
+  .gitignore        git不上传的文件配置
+  index.html        项目首页
+  package-lock.json 通过npm安装的依赖 都会在这里做记录
+  package.json      npm安装的依赖目录
+  README.md         readme文件
+  vite.config.js    基于vite的vue项目的配置文件
+引入vant组件库 https://vant-contrib.gitee.io/vant/#/zh-CN/quickstart
+  1. 安装
+    npm i vant
+  2. 按需引入组件样式
+    1. 安装插件
+      npm i unplugin-vue-components -D
+    2. 修改 vite.config.js
+      import { fileURLToPath, URL } from 'node:url'
+      import { defineConfig } from 'vite'
+      import vue from '@vitejs/plugin-vue'
+      import Components from 'unplugin-vue-components/vite';
+      import { VantResolver } from 'unplugin-vue-components/resolvers';
+
+      // https://vitejs.dev/config/
+      export default defineConfig({
+        plugins: [
+          vue(),
+          Components({
+            resolvers: [VantResolver()],
+          }),
+        ],
+        resolve: {
+          alias: {
+            '@': fileURLToPath(new URL('./src', import.meta.url))
+          }
+        }
+      })
+  3. 使用组件
+    <van-button type="primary">按钮</van-button>
+    <van-icon name="fire-o" color="#ee0a24" />
+开发项目  
+  启动项目：在项目目录下启动
+  vue-project % npm run dev
+  提交文件到git 在git仓库中执行
+浏览器打开控制台 使用移动设备模拟模式
+  1. 要开发一个移动端项目
+  2. vant组件库 - 轻量、可靠的移动端 Vue 组件库 
+vant组件库的使用
+  
+快速log插件
+  修改快捷键 - 自定义配置消息
+vscode快捷键怎么改 左下角齿轮 键盘快捷方式
+注释插件
+Vetur eslint
+  vue template 只允许有一个根节点 （vue2的语法）
+  vue template 中允许有多个节点  （vue3的语法）
+
+注意：修改完vscode插件配置后 如果感觉修改的内容无效 最好重启vscode
+
+列表渲染
+  v-for 用来渲染列表 
+  v-for="item in items"
+  :key="item.id"
+
+  v-for="(item,index) in items"
+  :key="index"
+动态样式绑定
+  :class="item === active+1?'indicatorActive':''"
+
+:deep
+
+分类页
+  分类页布局
+    左右的布局 
+      左边是vant组件Sidebar 侧边导航
+      右边是内容区  轮播图 + 宫格区域
+Tabbar 标签栏
+  图标设置
+    模式1：每一项只有一个图标 未选中的时候给一个颜色 选中之后给一个颜色 向服务器5次请求
+    模式2：两个单独的图标 一个是选中状态 一个是未选中状态             向服务器10次请求
+    模式3：多个标签使用同一张图片                                 向服务器1次请求
+          CSS图片精灵技术 减少向服务器发送请求的次数 减少服务器压力 开发者要是用css的定位技术 去展示不同的图标
+自定义组件
+
+登录、退出跳转的思路
+  1. 使用 vue-router 路由 使用路由守卫 跳转根路由 然后守卫会判断我们有没有权限访问首页
+  2. 使用状态机 store Pinia 维护状态 通过状态判断
+  3. 组件通信
+  4. 简化的登录过程
+    1. 储存用户信息到session中
+    2. 刷新 
+    3. App.vue  isLogin.value = true;
+    4. 显示项目主页
+  5. 简化的退出过程
+    1. 删除session中的用户信息
+    2. 刷新
+    3. const isLogin = ref(false);
+    4. 展示登录页面 <Login v-if="!isLogin" />
+
+响应式属性
+  const sTime = ref(0);
+  赋值
+  sTime.value = 30;
+
+
+搜索页面的跳转逻辑和登录页面相同
